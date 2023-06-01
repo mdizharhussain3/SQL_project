@@ -1,0 +1,71 @@
+# SQL_project
+Music Store projects SQL
+/* Q1:Who is the senior most Employe based on job title */
+SELECT * FROM employee
+     order by levels 
+     desc limit 1;
+
+select * from employee
+  order by hire_date
+  limit 1;
+  
+/* Q2: wich countries have the most Invoices? */
+select count (*) as "total_count", billing_country +
+from invoice
+group by billing_country
+order by "total_count" DESC
+limit 1
+
+select count (billing_country)"total_count" , billing_country
+from invoice
+group by billing_country
+order by billing_country DESC
+limit 1
+
+
+
+select  billing_country from invoice 
+group by  billing_country
+order by billing_country DESC
+
+
+
+/*Q3: what are top 3 values of total invoices?*/
+select total from invoice
+order by total DESC
+limit 3;
+
+/*Q4: Which city has the best coustomers? we would like to throw a promotional
+Music Festival in the city we made the most mony. write a Query that return
+on city that has the highest sum of invice tolats. Return both the ccity name
+&sum of all invioce totals*/
+select * from invoice
+SELECT sum (total) as invoice_total, billing_city
+FROM invoice
+group by billing_city
+order by invoice_total desc
+
+
+/*Q5: Who is the most coustomer? The coustomer who has spent the most mony will be 
+declred the best customer. Write a query that returns the person who has spent the 
+most money*/
+select customer.customer_id, customer.first_name, customer .last_name, sum(invoice.total) as total
+from customer
+join invoice on customer.customer_id = invoice.customer_id
+group by customer.customer_id
+order by total desc
+limit 1
+
+/*6: Wrrite the Query to return the email, first name, last name, & Genre of all Rock Music listeners. 
+return your list ordered alphabetically by email starting with A  
+
+
+
+
+
+
+
+
+
+
+
